@@ -19,5 +19,8 @@ def longestPalindrome(s):
             ansStart = checkRange
     return s[ansStart:ansStart + ansLen]
 print(longestPalindrome(s))
+<<<<<<< HEAD
         
         
+=======
+>>>>>>> bafdd787d70138ee42569402d24bf357b2c2406f
