@@ -1,0 +1,20 @@
+class Solution:
+    def numRescueBoats(self, people: List[int], limit: int) -> int:
+        
+        people.sort()
+        slow=0
+        fast=len(people)-1
+        count=0
+        while slow<=fast:
+            if slow==fast:
+                count+=1
+                break
+            cursum=people[slow]+people[fast]
+            if cursum<=limit:
+                count+=1
+                slow+=1
+                fast-=1
+            elif cursum>limit :
+                count+=1
+                fast-=1
+        return count
