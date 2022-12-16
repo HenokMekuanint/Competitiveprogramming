@@ -12,14 +12,10 @@ class Solution:
                 right-=1
                 ans = max(ans, _sum)
                 while right<len(grid[r])-1:
-                    _sum-=grid[r][left]
-                    _sum-=grid[r+2][left]
-                    _sum-=grid[r+1][left+1]
-                    left+=1
-                    _sum+=grid[r][right+1]
-                    _sum+=grid[r+1][right]
-                    _sum+=grid[r+2][right+1]
+                    _sum-=(grid[r][left]+grid[r+2][left]+grid[r+1][left+1])
+                    _sum+=(grid[r][right+1]+grid[r+1][right]+grid[r+2][right+1])
                     right+=1
+                    left+=1
                     ans = max(ans, _sum)
         return ans
 
