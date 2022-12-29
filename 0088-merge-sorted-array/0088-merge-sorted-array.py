@@ -19,10 +19,6 @@ class Solution:
                 nums1[end]=nums2[cur2]
                 end-=1
                 cur2-=1
-        while cur1>=0:
-            nums1[end]=nums1[cur1]
-            end-=1
-            cur1-=1
         while cur2>=0:
             nums1[cur2]=nums2[cur2]
             cur2-=1
