@@ -3,9 +3,29 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        j=0
-        for i in range(len(nums1)-1,len(nums1)-n-1,-1):
-            nums1[i]=nums2[j]
-            j+=1
-        return nums1.sort()
+        # [ 1, 2 , 3 , 3 , 5 , 6]
+        #      C1  E
+        # [ 2 , 5 , 6 ]
+        #  C2
+        end=len(nums1)-1
+        cur1=m-1
+        cur2=n-1
+        while end>=0 and cur2>=0:
+            if nums1[cur1]>=nums2[cur2]:
+                nums1[end]=nums1[cur1]
+                end-=1
+                cur1-=1
+            elif nums2[cur2]>nums1[cur1]:
+                nums1[end]=nums2[cur2]
+                end-=1
+                cur2-=1
+        while cur1>=0:
+            nums1[end]=nums1[cur1]
+            end-=1
+            cur1-=1
+        while cur2>=0:
+            nums1[cur2]=nums2[cur2]
+            cur2-=1
+        return nums1
+        
         
