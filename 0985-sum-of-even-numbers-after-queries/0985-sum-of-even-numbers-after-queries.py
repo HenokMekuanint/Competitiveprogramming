@@ -19,7 +19,6 @@ class Solution:
                 nums[index]+=value
                 total+=value
             elif ( nums[index]%2!=0 and value %2 !=0):
-                print(nums[index],value)
                 nums[index]+=value
                 total+=nums[index]
             else:
