@@ -6,7 +6,8 @@ class DataStream:
         self.counter=0
     def consec(self, num: int) -> bool:
         if num==self.value:
-            self.counter+=1
+            if self.counter<self.k:
+                self.counter+=1
         elif num!=self.value:
             self.counter=0
             
