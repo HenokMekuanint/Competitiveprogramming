@@ -3,10 +3,10 @@ class Solution:
         left=0
         right=len(nums)-1
         while left<right:
-            cur_sum=nums[left]+nums[right]
-            if cur_sum>target:
+            cursum=nums[right]+nums[left]
+            if cursum>target:
                 right-=1
-            elif cur_sum<target:
+            elif cursum<target:
                 left+=1
             else:
                 return [left+1,right+1]
