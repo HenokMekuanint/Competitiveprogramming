@@ -13,11 +13,12 @@ class Solution:
             if not root.left and not root.right:
                 arr.append(str(root.val))
                 ans.append("->".join(arr))
+                arr.pop()
                 return
-            
-            dfs(arr + [str(root.val)],root.left)
-            dfs(arr+[str(root.val)],root.right)
-            # return ans
+            arr.append(str(root.val))
+            dfs(arr,root.left)
+            dfs(arr,root.right)
+            arr.pop()
             
         dfs([],root)
         print(ans)
