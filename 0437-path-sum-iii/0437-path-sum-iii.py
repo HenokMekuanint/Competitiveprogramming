@@ -6,23 +6,29 @@
 #         self.right = right
 class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
-        dicti=defaultdict(int)
-        dicti[0]=1
-        cur_sum=0
-        count=[0]
-        def traverse(root,cur_sum):
-            if not root:
+        
+        count = defaultdict(int)
+        count[0] = 1
+        self.result = 0
+        
+        def backtrack(root, total):
+            
+            if root == None:
                 return
-            cur_sum+=root.val
             
-            if dicti[cur_sum-targetSum]>0:
-                count[0]+=(dicti[cur_sum-targetSum])
-            dicti[cur_sum]+=1
-
-            traverse(root.left,cur_sum)
-            traverse(root.right,cur_sum)
-            dicti[cur_sum]-=1
+            total += root.val            
+            self.result += count[total - targetSum]
             
-        traverse(root,0)
-        return count[0]
+            #count
+            count[total] += 1
+            
+            backtrack(root.left, total)            
+            backtrack(root.right, total)
+            
+            count[total] -= 1
+            
+            
+        backtrack(root, 0)
+        
+        return self.result
         
