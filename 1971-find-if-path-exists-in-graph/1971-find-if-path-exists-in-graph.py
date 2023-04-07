@@ -9,12 +9,11 @@ class Solution:
             if  vertex==destination:
                 return True
             visited.add(vertex)
-            found=False
             for neighbour in dicti[vertex]:
                 if neighbour not in visited:
-                    found= found or dfs(neighbour, visited)
+                    found=dfs(neighbour, visited)
                     if found:
                         return found
     
-            return found
+            return False
         return dfs(source,set())
