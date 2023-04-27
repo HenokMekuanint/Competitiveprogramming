@@ -10,13 +10,13 @@ class Solution:
         row_len, col_len = len(board), len(board[0])
         inbound = lambda row, col: 0 <= row < row_len and 0 <= col < col_len
         directions = [(1, 0), (0,1), (-1, 0), (0,-1), (1,1),(-1,-1), (1,-1), (-1,1)]
-        
+        visited=[[True for i in range(len(board[0]))]for j in range(len(board))]
         
         def dfs(row, col):
             #basecase
             if board[row][col] != "E":
                 return
-            
+            visited[row][col]=True
             count = 0
             #count number of mines
             for row_change, col_change in directions:
