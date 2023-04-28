@@ -13,13 +13,17 @@ class Solution:
             for neighbour in dicti[vertex]:
                 var=dfs(neighbour)
                 if s[vertex]!=var[-1]:
-                    temp.append(var)
+                    if len(temp)<2:
+                        temp.append(var)
+                    elif len(temp)==2:
+                        if len(var)>len(temp[0]):
+                            temp[0]=var
+                    temp=sorted(temp,key=lambda x:len(x))
             if not temp:
                 return s[vertex]
             if len(temp)==1:
                 ans=max(ans,len(temp[0])+1)
                 return temp[0]+s[vertex]
-            temp=sorted(temp,key=lambda x:len(x))
             ans=max(ans,len(temp[-1])+len(temp[-2])+1)
             return temp[-1]+s[vertex]
         dfs(0)
