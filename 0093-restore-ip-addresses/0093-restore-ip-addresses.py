@@ -8,7 +8,7 @@ class Solution:
                 ans.append(".".join(temp))
             for i in range(index,len(s)):
                 if int(s[index:i+1])>255 or (len(s[index:i+1])>1 and s[index]=="0"):
-                    continue
+                    return
                 backtrack(temp+[s[index:i+1]],i+1)
         backtrack([],0)
         return ans
