@@ -9,7 +9,7 @@ class Solution:
 
         ans=[set() for i in range(n)]
         def bfs(nodes):
-            
+
             queue=deque(nodes)
             
             while queue:
@@ -19,14 +19,13 @@ class Solution:
                     indegree[neighbour]-=1
                     ans[neighbour].add(node)
                     ans[neighbour]=ans[neighbour].union(ans[node])
-
                     if not indegree[neighbour]:
                         queue.append(neighbour)
-                        
+     
             for i in range(len(ans)):
                 ans[i]=sorted(list(ans[i]))
             return ans
-        return bfs(init_nodes)        
+        return bfs(init_nodes)      
  
         
         
