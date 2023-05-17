@@ -5,13 +5,15 @@ class Solution:
             parent[i]=i
         rank=[0 for i in range(n)]
         def find(x):
-            compress=[]
-            while x!=parent[x]:
-                compress.append(x)
-                x=parent[x]
-            for node in compress:
-                parent[node]=x
-            return x
+            root=x
+            while root!=parent[root]:
+                root=parent[root]
+            
+            while x!=root:
+                temp=parent[x]
+                parent[x]=root
+                x=temp
+            return root
             
         def union(x,y):
             parentX=find(x)
