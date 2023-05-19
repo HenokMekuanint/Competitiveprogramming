@@ -29,9 +29,8 @@ class Solution:
                 parent[parentX]=parentY
         for frm,to,dist in roads:
             union(frm,to)
-        hena=sorted(roads,key=lambda x:x[2])
         ans=float("inf")
-        for frm,to,dist in hena:
+        for frm,to,dist in roads:
             if find(1)==find(n)==find(frm)==find(to):
                 ans=min(ans,dist)
         return ans
