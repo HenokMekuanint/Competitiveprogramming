@@ -26,7 +26,8 @@ class Solution:
             else:
                 parent[parentX]=parentY
         for i in range(len(stones)):
-            for j in range(len(stones)):
+            for j in range(i+1,len(stones)):
                 if stones[i][0]==stones[j][0] or stones[i][1]==stones[j][1]:
                     union(i,j)
-        return len(stones) -len(set(find(x) for x in parent))
+        chatpgt=set(find(x) for x in parent)
+        return len(stones) -len(chatpgt)
