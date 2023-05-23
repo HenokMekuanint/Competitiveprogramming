@@ -20,7 +20,7 @@ class Solution:
             parentY=find(y)
             if parentX==parentY:return
             
-            if rank[parentY]==rank[parentY]:
+            if rank[parentX]==rank[parentY]:
                 rank[parentX]+=1
             if rank[parentX]>rank[parentY]:
                 parent[parentY]=parentX
