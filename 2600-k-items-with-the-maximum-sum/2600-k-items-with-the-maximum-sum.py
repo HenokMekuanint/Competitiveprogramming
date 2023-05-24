@@ -1,13 +1,9 @@
 class Solution:
     def kItemsWithMaximumSum(self, numOnes: int, numZeros: int, numNegOnes: int, k: int) -> int:
-        temp=[]
+        temp=[1]*numOnes
+        temp+=[0]*numZeros
+        temp+=[-1]*numNegOnes
         ans=0
-        for i in range(numOnes):
-            temp.append(1)
-        for i in range(numZeros):
-            temp.append(0)
-        for i in range(numNegOnes):
-            temp.append(-1)
         left=0
         while k:
             ans+=temp[left]
