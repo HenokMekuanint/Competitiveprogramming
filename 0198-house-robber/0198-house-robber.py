@@ -1,24 +1,19 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        memo = {}
-
-        def dp(index):
-            if index not in memo:
-                if index==len(nums)-1:
-                    memo[index]=nums[index]
-                    return nums[index]
+        
+        def dp(i):
+            
+            if i == 0:
                 
-                memo[index]=nums[index]
-                for i in range(index+2,len(nums)):
-                    memo[index]=max(memo[index],dp(i)+nums[index])
-                    
-                
-            return memo[index]
-                
-        for i in range(len(nums)):
-            if i not in memo:
-                dp(i)
-        return max(memo.values())
+                return nums[i]
+            if i == 1:
+                return max(nums[0],nums[1])
+            if memo[i] == -1:
+                memo[i] = max(dp(i - 1), dp(i - 2) + nums[i])
+            return memo[i]
+        n = len(nums)
+        memo = [-1 for _ in range(n)]
+        return dp(n - 1)
                 
                 
         
