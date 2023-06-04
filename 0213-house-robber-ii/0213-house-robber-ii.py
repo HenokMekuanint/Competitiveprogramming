@@ -1,17 +1,19 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        def rob_range(start, end):
-            prev_max = 0
-            curr_max = 0
-
-            for i in range(start, end):
-                temp = curr_max
-                curr_max = max(prev_max + nums[i], curr_max)
-                prev_max = temp
-
-            return curr_max
-
-        n = len(nums)
-        if n == 1:
+        if len(nums)==1:
             return nums[0]
-        return max(rob_range(0, n - 1), rob_range(1, n))
+        memo={}
+        def dp(index,end):
+            if index in memo:
+                return memo[index]
+            
+            if index>=end:
+                return 0
+            if index==len(nums)-1:
+                return nums[index]
+            memo[index]=max(nums[index]+dp(index+2,end),dp(index+1,end))
+            return memo[index]
+        ans2=dp(1,len(nums)) 
+        memo={}
+        ans1=dp(0,len(nums)-1)
+        return max(ans1,ans2)
