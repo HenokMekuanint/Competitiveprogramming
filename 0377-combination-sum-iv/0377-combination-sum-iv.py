@@ -1,14 +1,26 @@
 class Solution:
     def combinationSum4(self, nums: List[int], target: int) -> int:
-        dp = [0] * (target + 1)
-        dp[0] = 1
+        nums.sort()
+        memo = {}
         
-        for i in range(1, target + 1):
-            for num in nums:
-                if i - num >= 0:
-                    dp[i] += dp[i - num]
+        def dp(cur_sum):
+            if cur_sum == target:
+                return 1
+            if cur_sum > target:
+                return 0
+            if cur_sum in memo:
+                return memo[cur_sum]
+            
+            count = 0
+            for i in range(len(nums)):
+                if cur_sum + nums[i] > target:
+                    break
+                count += dp(cur_sum + nums[i])
+            
+            memo[cur_sum] = count
+            return count
         
-        return dp[target]
+        return dp(0)
     
             
              
