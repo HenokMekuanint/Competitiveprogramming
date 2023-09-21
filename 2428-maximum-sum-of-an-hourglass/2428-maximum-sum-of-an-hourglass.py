@@ -1,27 +1,28 @@
 class Solution:
     def maxSum(self, grid: List[List[int]]) -> int:
-        ans = 0
-        for r in range(len(grid)-2):
-                _sum=0
-                right=left=0
-                while right<left+3:
-                    _sum+=grid[r][right]
-                    _sum+=grid[r+2][right]
-                    right+=1
-                _sum+=grid[r+1][left+1]
-                right-=1
-                ans = max(ans, _sum)
-                while right<len(grid[r])-1:
-                    _sum-=(grid[r][left]+grid[r+2][left]+grid[r+1][left+1])
-                    _sum+=(grid[r][right+1]+grid[r+1][right]+grid[r+2][right+1])
-                    right+=1
-                    left+=1
-                    ans = max(ans, _sum)
-        return ans
+        
+        ans=0
+        cur_sum=0
+        prev_sum=0
+        for row in range(len(grid)-2):
+            
+            for col in range(len(grid[row])-2):
+                if  col==0:
+                    cur_sum=grid[row][col]+grid[row][col+1]+grid[row][col+2]+grid[row+1][col+1]+grid[row+2][col]+grid[row+2][col+1]+grid[row+2][col+2]
+                    prev_sum=cur_sum
+                    ans=max(ans,cur_sum)
+                else:
+                    
+                    cur_sum=prev_sum+(grid[row][col+2]-grid[row][col-1]+grid[row+1][col+1]-grid[row+1][col]+grid[row+2][col+2]-grid[row+2][col-1])
+                    prev_sum=cur_sum
+                    ans=max(ans,cur_sum)
 
-            
-            
-            
-            
-            
+        return ans
+                    
+                    
+                
+                
+                
+                
+                
             
