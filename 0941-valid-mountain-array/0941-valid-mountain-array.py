@@ -1,17 +1,18 @@
 class Solution:
     def validMountainArray(self, arr: List[int]) -> bool:
-        
         if len(arr)<3:
             return False
-        index=float("inf")
+        pivot=float('inf')
         for i in range(1,len(arr)-1):
-            if arr[i-1]<arr[i] and arr[i]>arr[i+1]:
-                index=i
-        if index==float("inf"):
+            if arr[i]>arr[i-1] and arr[i]>arr[i+1]:
+                pivot=i
+        
+        if  pivot==float('inf'):
             return False
-        left=right=index
+        left=pivot
+        right=pivot
         while left>0:
-            if arr[left-1]<arr[left]:
+            if arr[left]>arr[left-1]:
                 left-=1
             else:
                 return False
@@ -21,7 +22,4 @@ class Solution:
             else:
                 return False
         return True
-
-                
-            
         
