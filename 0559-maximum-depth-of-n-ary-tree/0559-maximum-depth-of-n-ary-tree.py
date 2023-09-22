@@ -7,16 +7,21 @@ class Node:
 """
 
 class Solution:
-    def maxDepth(self, root: 'Node') -> int:        
-        visited=set()
-        ans=[0]
-        def dfs(vertex,depth):
-            if not vertex:
-                return
-            visited.add(vertex.val)
-            ans[0]=max(ans[0],depth)
-            for child in vertex.children:
-                dfs(child,depth+1)
-        dfs(root,1)
-        return ans[0]
+    def maxDepth(self, root: 'Node') -> int:
+        if not root:
+            return 0
+        def dfs(node,depth):
+            cur_depth=0
+            if not node.children:
+            
+                return depth
+            
+            for children in node.children:
+
+                cur_depth=max(dfs(children,depth+1),cur_depth)
+                
+            return cur_depth
+        
+        return dfs(root,1)
+            
         
