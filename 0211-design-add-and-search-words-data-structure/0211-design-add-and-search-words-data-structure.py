@@ -1,6 +1,5 @@
 class TrieNode:
     def __init__(self):
-        self.is_start=False
         self.is_end=False
         self.children=[None for _ in range(26)]
     
@@ -25,23 +24,33 @@ class WordDictionary:
         
 
     def search(self, word: str) -> bool:
-        @cache
+        
+        memo = {}
+
         def dfs(node, i):
             if i == len(word):
                 return node.is_end
+
+            if (node, i) in memo:
+                return memo[(node, i)]
 
             char = word[i]
 
             if char == '.':
                 for child in node.children:
                     if child and dfs(child, i + 1):
+                        memo[(node, i)] = True
                         return True
+                memo[(node, i)] = False
                 return False
 
             if not node.children[ord(char.lower()) - 97]:
+                memo[(node, i)] = False
                 return False
 
-            return dfs(node.children[ord(char.lower()) - 97], i + 1)
+            result = dfs(node.children[ord(char.lower()) - 97], i + 1)
+            memo[(node, i)] = result
+            return result
 
         return dfs(self.root, 0)
             
