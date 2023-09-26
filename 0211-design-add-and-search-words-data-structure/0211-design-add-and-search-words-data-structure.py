@@ -25,6 +25,7 @@ class WordDictionary:
         
 
     def search(self, word: str) -> bool:
+        @cache
         def dfs(node, i):
             if i == len(word):
                 return node.is_end
