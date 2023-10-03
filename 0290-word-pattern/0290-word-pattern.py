@@ -6,13 +6,15 @@ class Solution:
             
             return False
         dicti={}
+        has_key=defaultdict(int)
         for i in range(len(pattern)):
             if pattern[i] in dicti:
                 if dicti[pattern[i]]!=a[i]:
                     
                     return False
             else:
-                if a[i] in dicti.values():
+                if  has_key[a[i]]:
                     return False
                 dicti[pattern[i]]=a[i]
+                has_key[a[i]]=1
         return True
