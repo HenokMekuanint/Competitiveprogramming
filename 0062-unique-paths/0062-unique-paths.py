@@ -1,12 +1,18 @@
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
+        memo={}
         
-        
-        state=[[ 1 if i==0 or j==0 else 0 for i in range(n) ] for j in range(m)]
-        
-        for i in range(1,m):
-            for j in range(1,n):
-                state[i][j]=state[i][j-1]+state[i-1][j]
-        return state[-1][-1]
-                        
-        
+        def inbound(row,col):
+            nonlocal m,n
+            return 0<=row<m and 0<=col<n
+        def dp(row,col):
+            if not inbound(row,col):
+                return 0
+            if row==m-1 and col==n-1:
+                return 1
+            if (row,col) in memo:
+                return memo[(row,col)]
+            
+            memo[(row,col)]=dp(row+1,col)+dp(row,col+1)
+            return memo[(row,col)]
+        return dp(0,0)
