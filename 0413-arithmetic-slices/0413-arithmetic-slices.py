@@ -1,15 +1,24 @@
 class Solution:
-    def numberOfArithmeticSlices(self, nums: List[int]) -> int:
-        temp=0
-        res=0
-        for i in range(len(nums)):
-            if i<len(nums)-2 and nums[i+2]-nums[i+1]==nums[i+1]-nums[i]:
-                temp+=1
-                res+=temp
-            else:
-                temp=0
-        return res
-                
+    def numberOfArithmeticSlices(self, A: List[int]) -> int:
+        memo = {}
+
+        def slices(idx):
+            if idx in memo:
+                return memo[idx]
+            if idx >= len(A) - 2:
+                return 0
+            dp = 0
+            if A[idx + 2] - A[idx + 1] == A[idx + 1] - A[idx]:
+                dp = 1 + slices(idx + 1)
+            slices(idx + 1)  # Ensure to call the function to reset the count
+            memo[idx] = dp
+            return dp
+
+        count = 0
+        for i in range(len(A)):
+            count += slices(i)
+        return count
+
             
             
             
